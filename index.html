@@ -486,7 +486,7 @@
   </div>
   <div class="hero-right">
     <div class="hero-cup">
-      <span class="cup-emoji">☕</span>
+      <image class="hero-cup-image" src="C:\Users\vekis\Downloads\coff.png" alt="Coffee cup"></image>
       <div class="hero-cup-label">Svaki šoljica, ručno</div>
     </div>
   </div>
@@ -615,7 +615,7 @@
 <section id="onama">
   <div class="onama-visual fade-up">
     <div class="onama-big-card">
-      <span class="onama-big-icon">☕</span>
+      <image class="back" src="C:\Users\vekis\Downloads\background2.png" alt="Coffee cup"></image>
       <h3>Nije samo kafić.<br>To je ritual.</h3>
       <p>Svaka šoljica koja izađe iz Pauze prošla je kroz ruke baristera koji veruje da dobra kafa ne zahteva žurbu — zahteva pažnju.</p>
     </div>
@@ -814,17 +814,11 @@
 </footer>
 
 <script>
-  // Menu filtering
   function filterMenu(category, button) {
     const cards = document.querySelectorAll('.menu-card');
     const buttons = document.querySelectorAll('.tab-btn');
-    
-    // Remove active class from all buttons
     buttons.forEach(btn => btn.classList.remove('active'));
-    // Add active class to clicked button
     button.classList.add('active');
-    
-    // Show/hide cards based on category
     cards.forEach(card => {
       if (card.dataset.cat === category) {
         card.style.display = 'block';
@@ -834,69 +828,66 @@
     });
   }
 
-  // Reservation handler
   function handleReserve(button) {
-    const form = button.parentElement;
-    const inputs = form.querySelectorAll('.res-input');
+    const form = button.closest('.res-form');
+    const fields = Array.from(form.querySelectorAll('.res-input'));
     let isValid = true;
-    
-    inputs.forEach(input => {
-      if (!input.value.trim()) {
-        input.style.borderColor = '#ff6b6b';
+
+    fields.forEach(field => {
+      const value = field.value.trim();
+      if (!value) {
+        field.style.borderColor = '#ff6b6b';
         isValid = false;
       } else {
-        input.style.borderColor = 'rgba(255,255,255,0.12)';
+        field.style.borderColor = 'rgba(255,255,255,0.12)';
       }
     });
-    
+
     if (isValid) {
       alert('Rezervacija poslata! Kontaktiraćemo vas uskoro.');
-      inputs.forEach(input => input.value = '');
+      fields.forEach(field => field.value = '');
     } else {
       alert('Molimo popunite sva polja.');
     }
   }
 
-  // Contact form handler
   function handleContact(event) {
     event.preventDefault();
     const form = event.target;
-    const inputs = form.querySelectorAll('.kf-input');
+    const fields = Array.from(form.querySelectorAll('.kf-input'));
     let isValid = true;
-    
-    inputs.forEach(input => {
-      if (!input.value.trim()) {
-        input.style.borderColor = '#ff6b6b';
+
+    fields.forEach(field => {
+      const value = field.value.trim();
+      if (!value) {
+        field.style.borderColor = '#ff6b6b';
         isValid = false;
       } else {
-        input.style.borderColor = 'rgba(255,255,255,0.1)';
+        field.style.borderColor = 'rgba(255,255,255,0.1)';
       }
     });
-    
+
     if (isValid) {
       alert('Poruka poslata! Odgovorićemo vam uskoro.');
-      inputs.forEach(input => input.value = '');
+      fields.forEach(field => field.value = '');
     } else {
       alert('Molimo popunite sva polja.');
     }
   }
 
-  // Fade-up animation on scroll
   function handleScroll() {
-    const elements = document.querySelectorAll('.fade-up');
+    const items = document.querySelectorAll('.fade-up');
     const windowHeight = window.innerHeight;
-    
-    elements.forEach(el => {
-      const rect = el.getBoundingClientRect();
+    items.forEach(item => {
+      const rect = item.getBoundingClientRect();
       if (rect.top < windowHeight - 100) {
-        el.classList.add('visible');
+        item.classList.add('visible');
       }
     });
   }
 
-  // Initialize
   document.addEventListener('DOMContentLoaded', () => {
-    handleScroll(); // Check on load
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
   });
 </script>
