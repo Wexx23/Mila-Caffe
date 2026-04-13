@@ -1,0 +1,816 @@
+<html>
+  
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pauza — Kafeterija Beograd</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --espresso:   #2b1d0e;
+    --brown-dark: #4a2f18;
+    --brown-mid:  #7a4f2e;
+    --brown-warm: #b07848;
+    --brown-pale: #e8d5bb;
+    --cream:      #f5ede0;
+    --cream-light:#faf6f0;
+    --amber:      #d4860a;
+    --amber-pale: #fdf0d0;
+    --ivory:      #fffcf6;
+    --text-dark:  #1e1209;
+    --text-mid:   #5c3d20;
+    --text-light: #9a7355;
+  }
+ 
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--cream-light);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+ 
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(250,246,240,0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(74,47,24,0.1);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 6vw; height: 68px;
+  }
+  .nav-logo {
+    font-size: 1.55rem; font-weight: 800;
+    color: var(--espresso); letter-spacing: -0.04em;
+    text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .nav-logo .dot { color: var(--amber); }
+  .nav-links { display:flex; gap:2.4rem; list-style:none; }
+  .nav-links a {
+    text-decoration:none; font-size:0.8rem; font-weight:500;
+    color: var(--text-mid); letter-spacing:0.07em; text-transform:uppercase;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--espresso); }
+  .nav-reserve {
+    background: var(--espresso); color: var(--cream);
+    padding: 0.55rem 1.4rem; border-radius: 50px;
+    font-size: 0.78rem; font-weight: 600; text-decoration: none;
+    letter-spacing: 0.05em; transition: all 0.25s;
+  }
+  .nav-reserve:hover { background: var(--brown-dark); transform: translateY(-1px); }
+ 
+  /* ── HERO ── */
+  #pocetna {
+    min-height: 100vh; padding-top: 68px;
+    display: grid; grid-template-columns: 55% 45%;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 7rem 6vw 7rem 8vw; position: relative; z-index: 2;
+  }
+  .hero-pretitle {
+    display: flex; align-items: center; gap: 0.8rem;
+    margin-bottom: 1.6rem;
+  }
+  .hero-pretitle span {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--amber);
+  }
+  .hero-pretitle::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--amber);
+  }
+  .hero-left h1 {
+    font-size: clamp(2.8rem, 5vw, 4.4rem);
+    font-weight: 800; line-height: 1.05;
+    color: var(--espresso); margin-bottom: 1.5rem;
+    letter-spacing: -0.04em;
+  }
+  .hero-left h1 .script {
+    font-weight: 300; font-style: italic;
+    color: var(--brown-warm); display: block;
+    font-size: 0.7em; letter-spacing: 0.02em;
+  }
+  .hero-left p {
+    font-size: 1rem; line-height: 1.8; color: var(--text-mid);
+    max-width: 400px; margin-bottom: 2.5rem;
+  }
+  .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+  .btn-dark {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    background: var(--espresso); color: var(--cream);
+    padding: 0.9rem 2rem; border-radius: 50px;
+    font-size: 0.83rem; font-weight: 600; letter-spacing: 0.04em;
+    text-decoration: none; transition: all 0.3s; border: none; cursor: pointer;
+  }
+  .btn-dark:hover { background: var(--brown-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(43,29,14,0.25); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    background: transparent; color: var(--espresso);
+    padding: 0.9rem 2rem; border-radius: 50px;
+    font-size: 0.83rem; font-weight: 600;
+    text-decoration: none; transition: all 0.3s;
+    border: 2px solid var(--espresso); cursor: pointer;
+  }
+  .btn-outline:hover { background: var(--brown-pale); transform: translateY(-2px); }
+ 
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3rem;
+    padding-top: 2rem; border-top: 1px solid rgba(74,47,24,0.1);
+  }
+  .hero-stat {}
+  .hero-stat .num {
+    font-size: 1.8rem; font-weight: 800; color: var(--espresso);
+    line-height: 1; letter-spacing: -0.04em;
+  }
+  .hero-stat .lbl {
+    font-size: 0.72rem; color: var(--text-light); font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.2rem;
+  }
+ 
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--espresso);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 60%, var(--brown-dark) 0%, var(--espresso) 70%);
+  }
+  .hero-cup {
+    position: relative; z-index: 2;
+    text-align: center;
+  }
+  .cup-emoji {
+    font-size: 9rem;
+    display: block;
+    animation: steam 3s ease-in-out infinite;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4));
+  }
+  @keyframes steam {
+    0%,100% { transform: translateY(0) rotate(-3deg); }
+    50%      { transform: translateY(-14px) rotate(3deg); }
+  }
+  .hero-cup-label {
+    margin-top: 2rem; color: rgba(245,237,224,0.5);
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+ 
+  /* ── SPECIJALI SECTION ── */
+  .specijali {
+    padding: 5.5rem 8vw;
+    background: var(--ivory);
+  }
+  .section-eyebrow {
+    font-size: 0.76rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 0.5rem;
+  }
+  .section-h2 {
+    font-size: 2.1rem; font-weight: 800;
+    color: var(--espresso); margin-bottom: 2.8rem;
+    letter-spacing: -0.03em; line-height: 1.2;
+  }
+ 
+  .menu-tabs {
+    display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 0.55rem 1.4rem; border-radius: 50px;
+    font-size: 0.8rem; font-weight: 600; border: 1.5px solid rgba(74,47,24,0.2);
+    background: transparent; color: var(--text-mid); cursor: pointer;
+    font-family: 'Poppins', sans-serif; transition: all 0.25s;
+  }
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--espresso); color: var(--cream);
+    border-color: var(--espresso);
+  }
+  .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+  .menu-card {
+    background: var(--cream-light); border-radius: 18px; overflow: hidden;
+    border: 1px solid rgba(74,47,24,0.08); transition: all 0.32s;
+    cursor: default;
+  }
+  .menu-card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(43,29,14,0.12); }
+  .menu-card-img {
+    height: 170px; display: flex; align-items: center; justify-content: center;
+    font-size: 6rem; position: relative;
+  }
+  .bg-espresso-tone { background: linear-gradient(145deg, #d4a87a, #a06030); }
+  .bg-amber-tone    { background: linear-gradient(145deg, #fdf0d0, #f5c878); }
+  .bg-cream-tone    { background: linear-gradient(145deg, #e8d5bb, #d4b080); }
+  .bg-mocha-tone    { background: linear-gradient(145deg, #c8a070, #8a5030); }
+  .bg-matcha-tone   { background: linear-gradient(145deg, #d8e8b0, #a8c870); }
+  .bg-berry-tone    { background: linear-gradient(145deg, #e8c0d0, #c070a0); }
+  .menu-card-body { padding: 1.4rem; }
+  .menu-card-name {
+    font-size: 0.98rem; font-weight: 700; color: var(--espresso); margin-bottom: 0.3rem;
+  }
+  .menu-card-desc {
+    font-size: 0.82rem; color: var(--text-mid); line-height: 1.65; margin-bottom: 1rem;
+  }
+  .menu-card-footer { display: flex; align-items: center; justify-content: space-between; }
+  .menu-price {
+    font-size: 1rem; font-weight: 800; color: var(--espresso);
+  }
+  .menu-badge {
+    font-size: 0.68rem; font-weight: 600; padding: 0.25rem 0.7rem;
+    border-radius: 50px; background: var(--amber-pale); color: var(--amber);
+    letter-spacing: 0.04em;
+  }
+  .menu-badge.popular { background: var(--espresso); color: var(--cream); }
+ 
+  /* ── O NAMA ── */
+  #onama {
+    padding: 6rem 8vw;
+    background: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+  .onama-visual {
+    position: relative;
+  }
+  .onama-big-card {
+    background: var(--espresso); border-radius: 24px;
+    padding: 3.5rem; color: var(--cream); position: relative; overflow: hidden;
+  }
+  .onama-big-card::before {
+    content: '';
+    position: absolute; top: -40%; right: -20%;
+    width: 240px; height: 240px;
+    background: rgba(255,255,255,0.04); border-radius: 50%;
+  }
+  .onama-big-card::after {
+    content: '';
+    position: absolute; bottom: -30%; left: -10%;
+    width: 180px; height: 180px;
+    background: rgba(255,255,255,0.03); border-radius: 50%;
+  }
+  .onama-big-icon { font-size: 5rem; margin-bottom: 1.5rem; display: block; }
+  .onama-big-card h3 {
+    font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .onama-big-card p {
+    font-size: 0.9rem; line-height: 1.8; color: rgba(245,237,224,0.75);
+  }
+  .onama-small-cards { display:flex; flex-direction:column; gap:1rem; margin-top:1rem; }
+  .onama-sm {
+    background: var(--cream-light); border-radius: 14px; padding: 1.4rem 1.6rem;
+    border: 1px solid rgba(74,47,24,0.08); display: flex; gap: 1rem; align-items: flex-start;
+    transition: all 0.3s;
+  }
+  .onama-sm:hover { border-color: var(--brown-pale); transform: translateX(4px); }
+  .onama-sm-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .onama-sm h5 { font-size: 0.88rem; font-weight: 700; color: var(--espresso); margin-bottom: 0.25rem; }
+  .onama-sm p  { font-size: 0.8rem; color: var(--text-mid); line-height: 1.6; }
+ 
+  .onama-text .section-eyebrow { margin-bottom: 0.5rem; }
+  .onama-text .section-h2 { margin-bottom: 1.3rem; }
+  .onama-text p {
+    font-size: 0.93rem; line-height: 1.8; color: var(--text-mid); margin-bottom: 1.1rem;
+  }
+  .onama-quote {
+    background: var(--amber-pale); border-left: 3px solid var(--amber);
+    border-radius: 0 12px 12px 0; padding: 1.2rem 1.6rem;
+    margin: 1.8rem 0 2rem;
+  }
+  .onama-quote p {
+    font-size: 0.95rem; font-style: italic; font-weight: 500;
+    color: var(--brown-dark); margin: 0; line-height: 1.65;
+  }
+ 
+  /* ── AMBIJENT / ZASTO MI ── */
+  .zasto {
+    padding: 5.5rem 8vw;
+    background: var(--espresso);
+    color: var(--cream);
+  }
+  .zasto .section-eyebrow { color: var(--brown-warm); }
+  .zasto .section-h2 { color: var(--cream); margin-bottom: 3rem; }
+  .zasto-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .zasto-item {
+    background: rgba(255,255,255,0.05); border-radius: 18px;
+    padding: 2rem 1.6rem; border: 1px solid rgba(255,255,255,0.07);
+    transition: all 0.3s;
+  }
+  .zasto-item:hover { background: rgba(255,255,255,0.09); transform: translateY(-4px); }
+  .zasto-num {
+    font-size: 2.4rem; font-weight: 800; color: var(--amber);
+    letter-spacing: -0.05em; line-height: 1; margin-bottom: 0.8rem;
+  }
+  .zasto-item h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .zasto-item p  { font-size: 0.82rem; color: rgba(245,237,224,0.6); line-height: 1.7; }
+ 
+  /* ── DOGAĐAJI ── */
+  #dogadjaji {
+    padding: 6rem 8vw;
+    background: var(--ivory);
+  }
+  .dogadjaji-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: start; }
+  .events-list { display: flex; flex-direction: column; gap: 1.2rem; }
+  .event-row {
+    background: var(--cream-light); border-radius: 16px; padding: 1.6rem 1.8rem;
+    border: 1px solid rgba(74,47,24,0.08);
+    display: grid; grid-template-columns: 72px 1fr; gap: 1.5rem; align-items: center;
+    transition: all 0.3s;
+  }
+  .event-row:hover { border-color: var(--brown-pale); transform: translateX(4px); box-shadow: 0 4px 18px rgba(43,29,14,0.07); }
+  .event-cal {
+    background: var(--espresso); color: var(--cream); border-radius: 12px;
+    padding: 0.7rem; text-align: center;
+  }
+  .event-cal .dn { font-size: 1.5rem; font-weight: 800; line-height: 1; }
+  .event-cal .mn { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; margin-top: 0.15rem; }
+  .event-body h4 { font-size: 0.95rem; font-weight: 700; color: var(--espresso); margin-bottom: 0.25rem; }
+  .event-body p  { font-size: 0.82rem; color: var(--text-mid); line-height: 1.6; }
+  .event-tag {
+    display: inline-block; margin-top: 0.6rem;
+    font-size: 0.68rem; font-weight: 600; padding: 0.2rem 0.7rem;
+    border-radius: 50px; background: var(--amber-pale); color: var(--amber);
+  }
+  .event-tag.live { background: var(--espresso); color: var(--cream); }
+ 
+  .reservacija-box {
+    background: var(--espresso); border-radius: 22px;
+    padding: 2.5rem; color: var(--cream); position: sticky; top: 90px;
+  }
+  .reservacija-box h3 {
+    font-size: 1.3rem; font-weight: 800; margin-bottom: 0.6rem; letter-spacing: -0.02em;
+  }
+  .reservacija-box p {
+    font-size: 0.85rem; color: rgba(245,237,224,0.65); line-height: 1.7; margin-bottom: 1.8rem;
+  }
+  .res-form { display: flex; flex-direction: column; gap: 1rem; }
+  .res-input {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px; padding: 0.85rem 1rem;
+    color: var(--cream); font-family: 'Poppins', sans-serif; font-size: 0.87rem;
+    outline: none; transition: all 0.25s; width: 100%;
+  }
+  .res-input:focus { border-color: var(--brown-warm); background: rgba(255,255,255,0.1); }
+  .res-input::placeholder { color: rgba(245,237,224,0.3); }
+  .res-input option { background: var(--espresso); }
+  .btn-amber {
+    background: var(--amber); color: white;
+    padding: 0.9rem; border-radius: 10px;
+    font-size: 0.85rem; font-weight: 700;
+    border: none; cursor: pointer; width: 100%;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s; letter-spacing: 0.02em;
+  }
+  .btn-amber:hover { background: #bb7108; transform: translateY(-2px); }
+ 
+  /* ── KONTAKT ── */
+  #kontakt {
+    padding: 6rem 8vw;
+    background: var(--cream);
+  }
+  .kontakt-wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: 5rem; align-items: start; }
+  .kontakt-info .section-eyebrow { margin-bottom: 0.4rem; }
+  .kontakt-info .section-h2 { margin-bottom: 1.5rem; }
+  .info-block { margin-bottom: 1.8rem; }
+  .info-block h5 {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 0.45rem;
+  }
+  .info-block p, .info-block a {
+    font-size: 0.93rem; color: var(--text-mid); line-height: 1.75; text-decoration: none;
+  }
+  .info-block a:hover { color: var(--espresso); }
+  .hours-table { width: 100%; border-collapse: collapse; }
+  .hours-table td {
+    font-size: 0.88rem; padding: 0.3rem 0; color: var(--text-mid);
+  }
+  .hours-table td:last-child { text-align: right; font-weight: 500; color: var(--espresso); }
+ 
+  .kontakt-form-wrap {
+    background: var(--espresso); border-radius: 24px; padding: 2.8rem;
+    color: var(--cream);
+  }
+  .kontakt-form-wrap h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .kontakt-form-wrap > p { font-size: 0.85rem; color: rgba(245,237,224,0.6); margin-bottom: 2rem; }
+  .kf { display: flex; flex-direction: column; gap: 1.1rem; }
+  .kf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+  .kf-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .kf-group label {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(245,237,224,0.5);
+  }
+  .kf-input {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 0.85rem 1rem;
+    color: var(--cream); font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem; outline: none; transition: all 0.25s;
+  }
+  .kf-input:focus { border-color: var(--amber); background: rgba(255,255,255,0.1); }
+  .kf-input::placeholder { color: rgba(245,237,224,0.25); }
+  .kf-input option { background: var(--espresso); }
+  textarea.kf-input { min-height: 110px; resize: vertical; }
+ 
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text-dark); color: rgba(245,237,224,0.45);
+    padding: 2.2rem 8vw;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.8rem; gap: 1rem; flex-wrap: wrap;
+  }
+  footer strong { color: var(--cream); }
+  footer a { color: rgba(245,237,224,0.5); text-decoration: none; }
+  footer a:hover { color: var(--cream); }
+ 
+  /* ── ANIM ── */
+  .fade-up {
+    opacity:0; transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity:1; transform:translateY(0); }
+ 
+  @media (max-width: 960px) {
+    #pocetna, #onama, .kontakt-wrap, .dogadjaji-grid { grid-template-columns: 1fr; }
+    .hero-right { min-height: 280px; }
+    .hero-left { padding: 4rem 6vw; }
+    .menu-grid, .zasto-grid { grid-template-columns: 1fr 1fr; }
+    .kf-row { grid-template-columns: 1fr; }
+    .reservacija-box { position: static; }
+  }
+  @media (max-width: 560px) {
+    .menu-grid, .zasto-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <a href="#pocetna" class="nav-logo">pauza<span class="dot">.</span></a>
+  <ul class="nav-links">
+    <li><a href="#onama">O nama</a></li>
+    <li><a href="#meni">Meni</a></li>
+    <li><a href="#dogadjaji">Događaji</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#dogadjaji" class="nav-reserve">Rezerviši sto</a>
+</nav>
+ 
+<!-- ══ HERO ══ -->
+<section id="pocetna">
+  <div class="hero-left">
+    <div class="hero-pretitle"><span>Kafeterija · Beograd</span></div>
+    <h1>
+      <span class="script">dobro jutro,</span>
+      tvoja<br>pauza<br>je ovde.
+    </h1>
+    <p>Mesto gde se kafa radi polako, a vreme prolazi sporije. Domaća pečena zrna, domaći kolači i ugao koji postaje tvoj.</p>
+    <div class="hero-btns">
+      <a href="#meni" class="btn-dark">Pogledaj meni</a>
+      <a href="#onama" class="btn-outline">Naša priča</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">8+</div>
+        <div class="lbl">Vrsta kafe</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">12</div>
+        <div class="lbl">Kolača dnevno</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">5★</div>
+        <div class="lbl">Prosečna ocena</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-cup">
+      <span class="cup-emoji">☕</span>
+      <div class="hero-cup-label">Svaki šoljica, ručno</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ══ MENI ══ -->
+<section id="meni" class="specijali fade-up">
+  <div class="section-eyebrow">Šta nudimo</div>
+  <div class="section-h2">Naš meni</div>
+  <div class="menu-tabs">
+    <button class="tab-btn active" onclick="filterMenu('kafa', this)">Kafa</button>
+    <button class="tab-btn" onclick="filterMenu('hrana', this)">Hrana</button>
+    <button class="tab-btn" onclick="filterMenu('bezalkohol', this)">Bezalkoholno</button>
+  </div>
+  <div class="menu-grid" id="menu-grid">
+ 
+    <!-- KAFA -->
+    <div class="menu-card" data-cat="kafa">
+      <div class="menu-card-img bg-espresso-tone">☕</div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Espresso</div>
+        <div class="menu-card-desc">Čisto, snažno, bez kompromisa. Domaća mešavina single-origin zrna, 9 bara.</div>
+        <div class="menu-card-footer">
+          <span class="menu-price">180 din</span>
+          <span class="menu-badge popular">Klasik</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card" data-cat="kafa">
+      <div class="menu-card-img bg-amber-tone">🥛</div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Flat White</div>
+        <div class="menu-card-desc">Dupli espresso sa svilenkastom mikro-penom. Za one koji znaju šta hoće.</div>
+        <div class="menu-card-footer">
+          <span class="menu-price">260 din</span>
+          <span class="menu-badge popular">Najpopularniji</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card" data-cat="kafa">
+      <div class="menu-card-img bg-cream-tone">🍂</div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Autumn Latte</div>
+        <div class="menu-card-desc">Espresso, domaći karamel sirup, meko mleko, prstohvat cimeta. Sezonski.</div>
+        <div class="menu-card-footer">
+          <span class="menu-price">320 din</span>
+          <span class="menu-badge">Sezonski</span>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- HRANA -->
+    <div class="menu-card" data-cat="hrana" style="display:none">
+      <div class="menu-card-img bg-amber-tone">🥐</div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Kroasan s putterom</div>
+        <div class="menu-card-desc">Svako jutro sveže, hrskav spolja, mekan unutra. Poslujen topao sa domaćim džemom.</div>
+        <div class="menu-card-footer">
+          <span class="menu-price">210 din</span>
+          <span class="menu-badge popular">Jutarnji hit</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card" data-cat="hrana" style="display:none">
+      <div class="menu-card-img bg-mocha-tone">🍰</div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Čokoladna torta</div>
+        <div class="menu-card-desc">Domaća, bez konzervansa. Topla čokolada, ganache, tanki biskvit. Ubojita kombinacija.</div>
+        <div class="menu-card-footer">
+          <span class="menu-price">380 din</span>
+          <span class="menu-badge">Domaće</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card" data-cat="hrana" style="display:none">
+      <div class="menu-card-img bg-cream-tone">🥪</div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Club sendvič</div>
+        <div class="menu-card-desc">Tost, piletina, avokado, rukola, paradajz. Svež i sitan — savršen uz americano.</div>
+        <div class="menu-card-footer">
+          <span class="menu-price">450 din</span>
+          <span class="menu-badge">Lagani obrok</span>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- BEZALKOHOL -->
+    <div class="menu-card" data-cat="bezalkohol" style="display:none">
+      <div class="menu-card-img bg-matcha-tone">🍵</div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Matcha Latte</div>
+        <div class="menu-card-desc">Ceremonijalni matcha, ovseno mleko, blagi med. Miran, zelen, tvoj.</div>
+        <div class="menu-card-footer">
+          <span class="menu-price">340 din</span>
+          <span class="menu-badge">Bez kofeina</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card" data-cat="bezalkohol" style="display:none">
+      <div class="menu-card-img bg-berry-tone">🫐</div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Borovničar</div>
+        <div class="menu-card-desc">Domaći borovničar sirup, soda, limun, med. Osvežavajuće i jedino pravo.</div>
+        <div class="menu-card-footer">
+          <span class="menu-price">290 din</span>
+          <span class="menu-badge">Sezonski</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card" data-cat="bezalkohol" style="display:none">
+      <div class="menu-card-img bg-amber-tone">🍋</div>
+      <div class="menu-card-body">
+        <div class="menu-card-name">Domaća limonada</div>
+        <div class="menu-card-desc">Svežo isceđen limun, domaći šećerni sirup, soda. Bez boja, bez E-brojeva.</div>
+        <div class="menu-card-footer">
+          <span class="menu-price">260 din</span>
+          <span class="menu-badge popular">Letnjih dana #1</span>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+</section>
+ 
+<!-- ══ O NAMA ══ -->
+<section id="onama">
+  <div class="onama-visual fade-up">
+    <div class="onama-big-card">
+      <span class="onama-big-icon">☕</span>
+      <h3>Nije samo kafić.<br>To je ritual.</h3>
+      <p>Svaka šoljica koja izađe iz Pauze prošla je kroz ruke baristera koji veruje da dobra kafa ne zahteva žurbu — zahteva pažnju.</p>
+    </div>
+    <div class="onama-small-cards">
+      <div class="onama-sm">
+        <span class="onama-sm-icon">🌱</span>
+        <div>
+          <h5>Single-origin zrna</h5>
+          <p>Direktna saradnja sa farmama iz Etiopije, Kostarike i Kolumbije. Znamo odakle dolazi svako zrno.</p>
+        </div>
+      </div>
+      <div class="onama-sm">
+        <span class="onama-sm-icon">👐</span>
+        <div>
+          <h5>Ručna priprema</h5>
+          <p>Svaki napitak se pravi pažljivo — merimo, podešavamo, prilagođavamo. Nema autopilota.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="onama-text fade-up">
+    <div class="section-eyebrow">Naša priča</div>
+    <h2 class="section-h2">O nama</h2>
+    <p>Pauza je nastala 2019. iz jedne jednostavne ideje — da Beograd dobije kafić gde se kafa shvata ozbiljno, ali atmosfera ostaje topla i bliska.</p>
+    <p>Nalazimo se u mirnom delu Dorćola, u starinskoj zgradi sa visokim plafonima i drvenim podovima koji pamte priče. Jutrom smo puni studenata, popodne dolaze freelanceri, a uveče — razgovor i muzika.</p>
+    <p>Ne verujemo u brzinu kada je kafa u pitanju. Verujemo u vaše jutro, vaš odmor, vašu pauzu.</p>
+    <div class="onama-quote">
+      <p>"Dobar espresso je kao dobar razgovor — kratak, snažan i ostaje u sećanju."</p>
+    </div>
+    <a href="#kontakt" class="btn-dark">Dođi nas poseti</a>
+  </div>
+</section>
+ 
+<!-- ══ ZASTO MI ══ -->
+<section class="zasto fade-up">
+  <div class="section-eyebrow">Zašto Pauza</div>
+  <div class="section-h2">Ono što nas čini drugačijim</div>
+  <div class="zasto-grid">
+    <div class="zasto-item">
+      <div class="zasto-num">01</div>
+      <h4>Sporija kafa</h4>
+      <p>Svaki espresso se priprema ručno, sa merenom dozom i podešenom temperaturom. Nema kompromisa.</p>
+    </div>
+    <div class="zasto-item">
+      <div class="zasto-num">02</div>
+      <h4>Domaći kolači</h4>
+      <p>Sve se peče na licu mesta, svako jutro. Bez industrijskih smeša — samo brašno, maslac i ljubav.</p>
+    </div>
+    <div class="zasto-item">
+      <div class="zasto-num">03</div>
+      <h4>Pravi prostor</h4>
+      <p>Visoki plafoni, meko svetlo, police knjiga i domaća muzika. Prostor koji te ne žuri da odeš.</p>
+    </div>
+    <div class="zasto-item">
+      <div class="zasto-num">04</div>
+      <h4>Lokalna zajednica</h4>
+      <p>Izlagamo lokalne umetnike, hostujemo open mike večeri i book clubove. Pauza je i kulturni prostor.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- ══ DOGAĐAJI ══ -->
+<section id="dogadjaji">
+  <div style="margin-bottom: 2.8rem">
+    <div class="section-eyebrow fade-up">Kalendar</div>
+    <h2 class="section-h2 fade-up">Događaji ovog meseca</h2>
+  </div>
+  <div class="dogadjaji-grid">
+    <div class="events-list">
+      <div class="event-row fade-up">
+        <div class="event-cal"><div class="dn">19</div><div class="mn">Apr</div></div>
+        <div class="event-body">
+          <h4>🎶 Jazz & Espresso večer</h4>
+          <p>Živa jazz muzika, limitiran broj mesta. Rezervacija obavezna — uključuje jednu kafu.</p>
+          <span class="event-tag live">Live muzika</span>
+        </div>
+      </div>
+      <div class="event-row fade-up">
+        <div class="event-cal"><div class="dn">23</div><div class="mn">Apr</div></div>
+        <div class="event-body">
+          <h4>📚 Jutarnji book club</h4>
+          <p>Diskusija uz kafu od 9h. Ovog meseca: "Stoner" John Williams. Svi dobrodošli.</p>
+          <span class="event-tag">Book club</span>
+        </div>
+      </div>
+      <div class="event-row fade-up">
+        <div class="event-cal" style="background: var(--amber);"><div class="dn">27</div><div class="mn">Apr</div></div>
+        <div class="event-body">
+          <h4>☕ Kurs pripreme kafe</h4>
+          <p>Naš barista vodi 2h radionice — naučićeš pour-over, aeropress i osnove espresso-a.</p>
+          <span class="event-tag">Radionica</span>
+        </div>
+      </div>
+      <div class="event-row fade-up">
+        <div class="event-cal"><div class="dn">03</div><div class="mn">Maj</div></div>
+        <div class="event-body">
+          <h4>🎨 Izložba: Ana Popović</h4>
+          <p>Otvaranje nove izložbe akvarela lokalnog umetnika. Vernisaž od 18h, slobodan ulaz.</p>
+          <span class="event-tag">Umetnost</span>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="reservacija-box fade-up">
+      <h3>Rezerviši sto</h3>
+      <p>Za posebne prilike, grupe ili kada znaš da hoćeš da sedneš — rezerviši unapred.</p>
+      <div class="res-form">
+        <input class="res-input" type="text" placeholder="Tvoje ime">
+        <input class="res-input" type="email" placeholder="Email adresa">
+        <input class="res-input" type="date">
+        <select class="res-input">
+          <option value="" disabled selected>Broj gostiju</option>
+          <option>1–2 osobe</option>
+          <option>3–4 osobe</option>
+          <option>5–8 osoba</option>
+          <option>Više od 8</option>
+        </select>
+        <button class="btn-amber" onclick="handleReserve(this)">Potvrdi rezervaciju</button>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ══ KONTAKT ══ -->
+<section id="kontakt">
+  <div class="kontakt-wrap">
+    <div class="kontakt-info fade-up">
+      <div class="section-eyebrow">Pronađi nas</div>
+      <h2 class="section-h2">Kontakt</h2>
+      <div class="info-block">
+        <h5>Adresa</h5>
+        <p>Cara Dušana 42, 11000 Beograd<br>Dorćol, Stari grad</p>
+      </div>
+      <div class="info-block">
+        <h5>Radno vreme</h5>
+        <table class="hours-table">
+          <tr><td>Ponedeljak – Petak</td><td>07:30 – 21:00</td></tr>
+          <tr><td>Subota</td><td>09:00 – 22:00</td></tr>
+          <tr><td>Nedelja</td><td>09:00 – 20:00</td></tr>
+        </table>
+      </div>
+      <div class="info-block">
+        <h5>Telefon</h5>
+        <p><a href="tel:+381641234567">+381 64 123 4567</a></p>
+      </div>
+      <div class="info-block">
+        <h5>Email</h5>
+        <p><a href="mailto:zdravo@pauza.rs">zdravo@pauza.rs</a></p>
+      </div>
+      <div class="info-block">
+        <h5>Instagram</h5>
+        <p><a href="#">@pauza.beograd</a></p>
+      </div>
+    </div>
+ 
+    <div class="kontakt-form-wrap fade-up">
+      <h3>Napiši nam</h3>
+      <p>Rezervacije, sugestije, saradnja — tu smo.</p>
+      <form class="kf" onsubmit="handleContact(event)">
+        <div class="kf-row">
+          <div class="kf-group">
+            <label>Ime</label>
+            <input class="kf-input" type="text" placeholder="Tvoje ime">
+          </div>
+          <div class="kf-group">
+            <label>Email</label>
+            <input class="kf-input" type="email" placeholder="tvoj@mail.com">
+          </div>
+        </div>
+        <div class="kf-group">
+          <label>Tema</label>
+          <select class="kf-input">
+            <option value="" disabled selected>Odaberi temu</option>
+            <option>Rezervacija stola</option>
+            <option>Proslava / event</option>
+            <option>Radionica / saradnja</option>
+            <option>Reklamacija / sugestija</option>
+            <option>Ostalo</option>
+          </select>
+        </div>
+        <div class="kf-group">
+          <label>Poruka</label>
+          <textarea class="kf-input" placeholder="Šta te zanima?"></textarea>
+        </div>
+        <button type="submit" class="btn-amber">Pošalji poruku ↗</button>
+      </form>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div><strong>pauza.</strong> — Kafeterija Beograd © 2026</div>
+  <div>Cara Dušana 42, Dorćol · <a href="mailto:zdravo@pauza.rs">zdravo@pauza.rs</a></div>
+  <div><a href="#pocetna">Nazad gore ↑</a></div>
+</footer>
+   
+</html>
